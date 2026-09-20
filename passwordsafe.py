@@ -1,47 +1,45 @@
 import module
 
-intentos_maximos = 3
-num_intentos = 0
+
+p = module.Password("", 0)
+
+while p.comprobar_num_intentos():
+
+    p.introducirpassword()
+
+    if p.tiene_longitud_maxima():
+
+        if not p.tiene_una_mayuscula():
+
+            print(p.mensajerequisitomayuscula())
+
+        elif not p.tiene_un_numero():
+
+            print(p.mensajerequisitonumero())
+
+        elif not p.tiene_un_simbolo():
+
+            print(p.mensajerequisitosimbolo())
 
 
-
-while module.comprobar_num_intentos(num_intentos,intentos_maximos):
-
-    password = module.introducirpassword()
-
-    if module.tiene_longitud_maxima(password):
-
-        if not module.tiene_una_mayuscula(password):
-
-            print(module.mensajerequisitomayuscula())
-
-        elif not module.tiene_un_numero(password):
-
-            print(module.mensajerequisitonumero())
-
-        elif not module.tiene_un_simbolo(password):
-
-            print(module.mensajerequisitosimbolo())
-
-
-        if module.comprobar_password_valida(password):
+        if p.comprobar_password_valida():
             break
 
 
-        num_intentos = module.sumar_num_intentos(num_intentos)
+        p.sumar_num_intentos()
 
-        if not module.comprobar_num_intentos(num_intentos,intentos_maximos):
-            print(module.mensajedesuperaciondeintentos())
+        if not p.comprobar_num_intentos():
+            print(p.mensajedesuperaciondeintentos())
 
     else:
 
 
-        print(module.mensajerequisitonumcaracteres())
-        num_intentos = module.sumar_num_intentos(num_intentos)
+        print(p.mensajerequisitonumcaracteres())
+        p.sumar_num_intentos()
 
-        if not module.comprobar_num_intentos(num_intentos,intentos_maximos):
-            print(module.mensajedesuperaciondeintentos())
+        if not p.comprobar_num_intentos():
+            print(p.mensajedesuperaciondeintentos())
 
 
-if (module.comprobar_password_valida(password)):
-    print (module.mensajedepasswordvalida())
+if (p.comprobar_password_valida()):
+    print (p.mensajedepasswordvalida())
